@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="/resources/js/reply.js"></script>
 </head>
 <body>
 
@@ -29,7 +31,19 @@
 			
 		</table>
 	</form>
-	
+	<div><label>댓글</label></div>
+	<div>
+		<textarea rows="5" cols="50" id="reply"></textarea>
+	</div>
+	<div>
+		<input id="add" type="button" value="댓글쓰기">
+	</div>
+	<div>
+		<ul id="replyUL">
+		
+		
+		</ul>
+	</div>
 	
 
 </body>
