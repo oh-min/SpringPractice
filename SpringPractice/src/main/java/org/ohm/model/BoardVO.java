@@ -2,7 +2,6 @@ package org.ohm.model;
 
 public class BoardVO {
 
-	
 	// 게시판번호 (bno)
 	private int bno;
 	// 제목 (title)
@@ -52,19 +51,9 @@ public class BoardVO {
 		this.id = id;
 	}
 	
-	
 	@Override
 	public String toString() {
 		return "BoardVO [bno=" + bno + ", title=" + title + ", content=" + content + ", regdate=" + regdate + ", cnt="
 				+ cnt + ", id=" + id + "]";
 	}
-	
-	
-	// getter & setter 메서드
-	
-	
-	
-	
-	
-	
 }

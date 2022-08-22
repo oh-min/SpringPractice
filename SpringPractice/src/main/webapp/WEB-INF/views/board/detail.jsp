@@ -38,10 +38,8 @@
 	<div>
 		<input id="add" type="button" value="댓글쓰기">
 	</div>
-	<div>
-		<ul id="replyUL">
-		
-		
+	<div id="chat">
+		<ul id="replyUL">	
 		</ul>
 	</div>
 	

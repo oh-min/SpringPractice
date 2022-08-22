@@ -42,7 +42,6 @@ public class BoardController {
 		return "board/detail";
 	}
 	
-	
 	// 게시판 수정
 	@RequestMapping(value = "/board/modify", method = RequestMethod.POST)
 	public String modify (BoardVO board, RedirectAttributes rttr) {
@@ -59,17 +58,11 @@ public class BoardController {
 		return "redirect:/list";
 	}
 	
-	
-	
-	
-	
 	// 게시판 글쓰기 페이지 (화면)
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String write () {
 		return "board/write";
 	}
-	
-	
 	
 	// 게시판 글쓰기 페이지 (insert 이루어짐)
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
@@ -77,13 +70,6 @@ public class BoardController {
 		// 비즈니스 영역 연결한 후 BoardService
 		bs.write(board);
 		return "redirect:/list";
-	}
-	
-	
-
-
-	
-	
-	
+	}	
 	
 }

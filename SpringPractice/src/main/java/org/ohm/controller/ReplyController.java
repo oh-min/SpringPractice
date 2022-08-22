@@ -38,4 +38,23 @@ public class ReplyController {
 		
 		return new ResponseEntity<>(rs.list(bno),HttpStatus.OK);
 	}
+	
+	// 댓글 수정 
+	@RequestMapping(value = "/replies/modify", method = RequestMethod.PUT)
+	public ResponseEntity<String> replymodify(@RequestBody ReplyVO reply){
+		System.out.println(reply);
+		
+		int result = rs.modify(reply);
+		return result==1? new ResponseEntity<>("success",HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	// 댓글 삭제
+	@RequestMapping(value = "/replies/remove/{rno}", method = RequestMethod.DELETE)
+	public ResponseEntity<String> replyremove(@PathVariable int rno){
+		System.out.println("삭제="+rno);
+		
+		int result = rs.remove(rno);
+		return result==1? new ResponseEntity<>("success",HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }

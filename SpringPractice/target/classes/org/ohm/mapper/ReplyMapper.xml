@@ -14,6 +14,16 @@
 	<select id="list" resultType="org.ohm.model.ReplyVO">
 		select * from reply	
 		 where bno=#{bno}
-		
 	</select>
+	
+	<update id="modify">
+		update reply
+		set reply = #{reply}
+		where rno = #{rno}
+	</update>
+	
+	<delete id="remove">
+		delete from reply
+		where rno=#{rno}
+	</delete>
 </mapper>  
