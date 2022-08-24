@@ -42,7 +42,7 @@ $(document).ready(function(){
 		// console.log(inputFile);
 		var files=inputFile[0].files;
 		
-		console.log(files);
+		// console.log(files);
 		
 		for(var i=0;i<files.length;i++){
 			// 함수 호출(checkExtension)
@@ -60,7 +60,11 @@ $(document).ready(function(){
 			url:"/uploadAjaxAction",
 			data:formData,
 			contentType:false,
-			processData:false
+			processData:false,
+			dataType:"json",
+			success: function(result){
+				console.log(result)
+			}
 		})
 	})
 	

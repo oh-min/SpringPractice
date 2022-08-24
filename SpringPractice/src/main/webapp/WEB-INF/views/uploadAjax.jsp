@@ -9,12 +9,18 @@
 <script type="text/javascript" src="/resources/js/uploadAjax.js"></script>
 </head>
 <body>
+
 <div>
 	<input type="file" name ="uploadFile" multiple>
 </div>
+
 <div>
 	<input type="button" id="uploadBtn" value="파일전송">
-</div>		
+</div>
+
+<div>
+</div>	
+	<img src="">
 </body>
 </html>
 
