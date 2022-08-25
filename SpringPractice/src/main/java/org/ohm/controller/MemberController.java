@@ -51,7 +51,7 @@ public class MemberController {
 		if (ls.login(member)==null) {
 			return "member/login";
 			} else {	
-				return "redirect:/list";	
+				return "redirect:/board/list";	
 			}
 		
 		

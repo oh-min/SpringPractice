@@ -10,9 +10,13 @@ import java.util.Date;
 import java.util.UUID;
 
 import org.ohm.model.AttachFileVO;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,6 +25,7 @@ import net.coobird.thumbnailator.Thumbnailator;
 
 @Controller
 public class UploadController {
+	// form
 	@RequestMapping(value = "/uploadForm", method = RequestMethod.GET)
 	public void uploadForm() {
 		
@@ -49,6 +54,8 @@ public class UploadController {
 		}	
 	}
 	
+	
+	// ajax
 	@RequestMapping(value = "/uploadAjax", method = RequestMethod.GET)
 	public void uploadAjax() {
 		
@@ -152,13 +159,63 @@ public class UploadController {
 				list.add(attachvo);
 				
 				
-			}catch(Exception e) {// 예외르 처리하라.
+			}catch(Exception e) {// 예외를 처리하라.
 				System.out.println(e.getMessage());
 			}
 		} // for문 끝
 		return new ResponseEntity<>(list,HttpStatus.OK);
+	} // uploadAjaxPost 끝
+	
+	// 이미지 주소 생성
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> getFile(String fileName){
+		
+		System.out.println(fileName);
+		
+		File file = new File("D:\\01-STUDY\\upload\\"+fileName);
+		
+		ResponseEntity<byte[]> result = null;
+		
+		HttpHeaders headers = new HttpHeaders();
+		
+		try {
+			
+			headers.add("Content-Type", Files.probeContentType(file.toPath()));
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), headers,HttpStatus.OK);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	} // getFile 끝
+	
+	// 다운로드 주소 생성
+	@RequestMapping(value = "/download", method = RequestMethod.GET)
+	public ResponseEntity<Resource> downloadFile(String fileName){
+		
+		Resource resource = new FileSystemResource("D:\\01-STUDY\\upload\\"+fileName);
+		
+		// 다운로드시 파일의 이름을 처리
+		String resourceName = resource.getFilename();
+		
+		HttpHeaders headers = new HttpHeaders();
+		
+		try {
+			// 다운로드 파일이름이 한글일 때, 깨지지 않게 하기 위한 설정
+			headers.add("Content-Disposition","attachment;filename="
+						+new String(resourceName.getBytes("utf-8"),"ISO-8859-1"));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<>(resource,headers,HttpStatus.OK);
 	}
 	
-
+	
+	
+	
+	
+	
 	
 }

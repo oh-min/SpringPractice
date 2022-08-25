@@ -22,9 +22,9 @@
 		<option value="TC">제목+게시글</option>
 	</select>
 	<input type="text" name="keyword">
-	<input type="text" name="pageNum" value="${paging.cri.pageNum}">
-	<input type="text" name="amount" value="${paging.cri.amount}">
-	<input type="button" value="검색">
+	<input type="hidden" name="pageNum" value="${paging.cri.pageNum}">
+	<input type="hidden" name="amount" value="${paging.cri.amount}">
+	<input type="button" value="검색" id="searchBtn">
 </form>
 
 <table border="1">

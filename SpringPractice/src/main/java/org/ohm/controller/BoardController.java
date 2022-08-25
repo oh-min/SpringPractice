@@ -69,7 +69,7 @@ public class BoardController {
 	public String writePost (BoardVO board) {
 		// 비즈니스 영역 연결한 후 BoardService
 		bs.write(board);
-		return "redirect:/list";
+		return "redirect:/board/list";
 	}	
 	
 }

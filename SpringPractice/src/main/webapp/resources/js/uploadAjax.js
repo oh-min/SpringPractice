@@ -32,8 +32,9 @@ $(document).ready(function(){
 	
 	
 	// 파일전송버튼을 클릭하면
-	$("#uploadBtn").on("click",function(){
-		// alert("ssss")
+	$("#uploadBtn").on("click",function(e){
+		e.preventDefault();
+		alert("ssss");
 		// 파일업로드 관련 로직 처리
 		// .jsp의 form태그를 대체
 		var formData = new FormData();
@@ -64,6 +65,31 @@ $(document).ready(function(){
 			dataType:"json",
 			success: function(result){
 				console.log(result)
+				
+				var str="";
+				
+				$(result).each(function(i,obj){
+					
+					console.log(obj)
+					console.log(obj.fileName)
+					
+					// 만약 image결과가 true면
+					if(obj.image){
+						// 아래에 있는거 실행
+						var filePath = encodeURIComponent(obj.uploadPath+"/"+obj.uuid+"_s_"+obj.fileName);
+						console.log(filePath);
+						
+						str+="<li><img src='\display?fileName="+filePath+"'>"+obj.fileName+"</li>"
+					}else{ // 그렇지 안으면
+						// 다운로드 할 수 있도록 실행
+						var filePath = encodeURIComponent(obj.uploadPath+"/"+obj.uuid+"_"+obj.fileName);
+						str+="<li><a href='\download?fileName="+filePath+"'>"+obj.fileName+"</a></li>"
+					}			
+					
+				})
+				
+				$("#uploadResult ul").html(str);
+				
 			}
 		})
 	})
