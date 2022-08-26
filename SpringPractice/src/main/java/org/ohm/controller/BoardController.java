@@ -1,10 +1,15 @@
 package org.ohm.controller;
 
+import java.util.ArrayList;
+
+import org.ohm.model.AttachFileVO;
 import org.ohm.model.BoardVO;
 import org.ohm.model.CriteriaVO;
 import org.ohm.model.PageVO;
 import org.ohm.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,9 +72,16 @@ public class BoardController {
 	// 게시판 글쓰기 페이지 (insert 이루어짐)
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String writePost (BoardVO board) {
-		// 비즈니스 영역 연결한 후 BoardService
+		System.out.println("boardcontroller write");
+		// 비즈니스 영역 연n결한 후 BoardService
 		bs.write(board);
 		return "redirect:/board/list";
 	}	
+	
+	// 해당게시물의 첨부파일의 데이터를 ajax로 전송
+	@RequestMapping(value = "/attachlist", method = RequestMethod.GET)
+	public ResponseEntity<ArrayList<AttachFileVO>> uploadAjaxPost(int bno){
+		return new ResponseEntity<>(bs.attachlist(bno),HttpStatus.OK);
+	}
 	
 }

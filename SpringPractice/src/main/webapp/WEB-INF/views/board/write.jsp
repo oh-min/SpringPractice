@@ -11,22 +11,19 @@
 <body>
 
 <h1>글쓰기</h1>
-<form action="/write" method="post">
+<form action="/write" method="post" id="form">
 	제목<input type="text" name="title"><br>
 	내용<input type="text" name="content"><br>
 	
-	<input type="text" name="fileName"><br>
-	<input type="text" name="uuid"><br>
-	<input type="text" name="uploadpath"><br>
-	<input type="text" name="image"><br>
-	
 	<input type="file" name ="uploadFile" multiple><br>
 	<input type="button" id="uploadBtn" value="글쓰기">
-</form>
 <div id="uploadResult">	
 	<ul>
 		
 	</ul>
-</div>	
+</div>
+</form>
+
+	
 </body>
 </html>

@@ -34,7 +34,7 @@ $(document).ready(function(){
 	// 파일전송버튼을 클릭하면
 	$("#uploadBtn").on("click",function(e){
 		e.preventDefault();
-		alert("ssss");
+		// alert("ssss");
 		// 파일업로드 관련 로직 처리
 		// .jsp의 form태그를 대체
 		var formData = new FormData();
@@ -67,11 +67,16 @@ $(document).ready(function(){
 				console.log(result)
 				
 				var str="";
+				var input="";
 				
 				$(result).each(function(i,obj){
 					
 					console.log(obj)
 					console.log(obj.fileName)
+					input+="<input type='text' name='attach["+i+"].fileName' value='"+obj.fileName+"'>";
+					input+="<input type='text' name='attach["+i+"].uuid' value='"+obj.uuid+"'>";
+					input+="<input type='text' name='attach["+i+"].uploadPath' value='"+obj.uploadPath+"'>";
+					input+="<input type='text' name='attach["+i+"].image' value='"+obj.image+"'>";
 					
 					// 만약 image결과가 true면
 					if(obj.image){
@@ -89,7 +94,9 @@ $(document).ready(function(){
 				})
 				
 				$("#uploadResult ul").html(str);
+				$("#form").append(input).submit();
 				
+	
 			}
 		})
 	})

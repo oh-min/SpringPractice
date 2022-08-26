@@ -3,8 +3,9 @@ package org.ohm.mapper;
 import java.util.ArrayList;
 
 import org.ohm.model.BoardVO;
+import org.ohm.model.CriteriaVO;
 
-public interface BoardMapper<CriteriaVO> {
+public interface BoardMapper {
 
 	// 글쓰기에 해당되는 DB작업 설계
 	public void write(BoardVO board);
